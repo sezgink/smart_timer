@@ -1,9 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
+import StartToggle from './startToggle';
+import {useState} from 'react';
 
 
 
 function App() {
+  let [isCounting,setIsCounting] = useState(false);
+  function onStartToggle(){
+    setIsCounting(!isCounting);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -11,15 +18,9 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <button className="positiveButton">Start</button>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <StartToggle isCounting={isCounting} onToggle={onStartToggle}/>
+        
+        
       </header>
     </div>
   );
