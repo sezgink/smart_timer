@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.positiveButton {
+  justify-content: center;
+  background-color: #30cc35;
+  color: white;
+  padding: 15px 24px;
+  text-align: center;
+  font-size: 20px;
+  border: none;
+  border-radius: 8px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.positiveButton:hover{
+  background-color: rgb(19, 175, 40);
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  
+}
+.positiveButton:active{
+  box-shadow: 0 0px 16px 0 rgba(255, 255, 255, 0.747), 0 17px 50px 0 rgba(255, 255, 255, 0.19);
+}
