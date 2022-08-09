@@ -12,6 +12,11 @@ code {
     monospace;
 }
 
+.dateDiv{
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 .positiveButton {
   justify-content: center;
   background-color: #34be39;
