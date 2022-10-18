@@ -44,6 +44,21 @@ function App() {
     </div>
   );
 
+  const getTotalInterval = pastIntervals.reduce((accumulator,value)=>{
+    return accumulator + value.interval;
+  },0);
+  
+  // function TotalIntervalText(props){
+  //   const getTotalInterval=()=>{
+  //     let total = 0;
+  //     props.pastIntervals.forEach(element => {
+  //       total += element.interval;
+  //     });
+  //   }
+  //   return {getTotalInterval};
+  // }
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -51,12 +66,13 @@ function App() {
         <div>
           
         {pastIntervalList}
+        {(pastIntervals.length>0) &&<h2>{"Total Interval:"}{getTotalInterval}</h2>}
+
         
         <StartToggle isCounting={isCounting} onToggle={onStartToggle}/>
 
         {/*currentCount*/}
         {'\n'}
-        {/* new Date(currentCount*1000).toISOString().substring(11, 19) */}
         <TimerText isCounting={isCounting} currentCount={currentCount}/>
 
         </div>
