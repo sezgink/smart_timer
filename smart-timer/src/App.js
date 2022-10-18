@@ -17,6 +17,9 @@ function App() {
     }
     setIsCounting(!isCounting);
   }
+  function onClearClick(){
+    setPastIntervals([]);
+  }
   let [currentCount,setCurrentCount] = useState(0);
   let [intervalID,setIntervalID] = useState(0);
   // let [pastIntervals,setPastIntervals] = useState([Number]);
@@ -64,16 +67,18 @@ function App() {
       <header className="App-header">
 
         <div>
+        <StartToggle isCounting={isCounting} onToggle={onStartToggle}/>
+        <button className='straightButton' onClick={onClearClick}>Clean</button>
+
+        {/*currentCount*/}
+        {'\n'}
+        <TimerText isCounting={isCounting} currentCount={currentCount}/>
           
         {pastIntervalList}
         {(pastIntervals.length>0) &&<h2>{"Total Interval:"}{getTotalInterval}</h2>}
 
         
-        <StartToggle isCounting={isCounting} onToggle={onStartToggle}/>
-
-        {/*currentCount*/}
-        {'\n'}
-        <TimerText isCounting={isCounting} currentCount={currentCount}/>
+        
 
         </div>
         

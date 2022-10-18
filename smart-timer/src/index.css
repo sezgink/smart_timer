@@ -56,4 +56,15 @@ code {
 .negativeButton:active{
   box-shadow: 0 0px 16px 0 rgba(255, 255, 255, 0.747), 0 17px 50px 0 rgba(255, 255, 255, 0.19);
 }
+.straightButton {
+  justify-content: center;
+  background-color: #217dd3;
+  color: white;
+  padding: 15px 24px;
+  text-align: center;
+  font-size: 20px;
+  border: none;
+  border-radius: 8px;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+}
 
