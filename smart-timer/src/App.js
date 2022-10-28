@@ -67,17 +67,15 @@ function App() {
       <header className="App-header">
 
         <div>
+        <TimerText isCounting={isCounting} currentCount={currentCount}/>
+        <br/>
         <StartToggle isCounting={isCounting} onToggle={onStartToggle}/>
-        <button className='straightButton' onClick={onClearClick}>Clean</button>
 
+        <button className='straightButton' onClick={onClearClick}>Clean</button>
         {/*currentCount*/}
         {'\n'}
-        <TimerText isCounting={isCounting} currentCount={currentCount}/>
-          
+        {(pastIntervals.length>0) &&<h3>{"Total Interval:"}{getTotalInterval}</h3>}
         {pastIntervalList}
-        {(pastIntervals.length>0) &&<h2>{"Total Interval:"}{getTotalInterval}</h2>}
-
-        
         
 
         </div>
