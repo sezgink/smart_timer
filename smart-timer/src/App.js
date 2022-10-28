@@ -3,6 +3,16 @@ import StartToggle from './startToggle';
 import {useState} from 'react';
 import TimerText from './TimerText';
 
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemText from '@mui/material/ListItemText'
+import IconButton from '@mui/material/IconButton'
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import { color } from '@mui/system';
+
+
+
 
 function App() {
   let [isCounting,setIsCounting] = useState(false);
@@ -75,7 +85,22 @@ function App() {
         {/*currentCount*/}
         {'\n'}
         {(pastIntervals.length>0) &&<h3>{"Total Interval:"}{getTotalInterval}</h3>}
-        {pastIntervalList}
+        {/* {pastIntervalList} */}
+        <List sx={{maxHeight: 200, overflow: 'auto'}}>
+         {pastIntervals.map((value,index) => (
+           <ListItem
+             key={index}
+             disableGutters
+             secondaryAction={
+               <IconButton aria-label="comment">
+                 {/* <CommentIcon /> */}
+               </IconButton>
+             }
+           >
+             <ListItemText primary={`${index+1}.Session ${value.date.toISOString().substring(11,19)}`} secondary={`Job Name`} secondaryTypographyProps={{color: 'rgb(102, 157, 246)'}}/>
+           </ListItem>
+         ))}
+        </List>
         
 
         </div>
