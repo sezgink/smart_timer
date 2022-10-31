@@ -18,6 +18,7 @@ import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
+import { ListItemButton } from '@mui/material';
 
 
 
@@ -86,7 +87,7 @@ function App() {
 
   function PastIntervalsList(props){
 
-    return(<List sx={{maxHeight: 200, overflow: 'auto'}}>
+    return(<List sx={{maxHeight: 200, overflow: 'auto',width: '100%' }}>
     {props.pastIntervalsInput.map((value,index) => (
       <ListItem
         key={index}
@@ -106,7 +107,7 @@ function App() {
   function addMission() {
   // function addMission(missionName) {
     // if(availableMissions.includes(missionName)===false)
-    setAvailableMissions(availableMissions=>[...availableMissions,"Mission"]);
+    setAvailableMissions(availableMissions=>[...availableMissions,"Nice Mission"+availableMissions.length]);
   }
   function deleteMission(index) {
     // function addMission(missionName) {
@@ -117,26 +118,22 @@ function App() {
     }
 
   function AvailableMissionList(props){
-    return(<List sx={{maxHeight: 200, overflow: 'auto'}} >
+    return(<List sx={{maxHeight: 200, overflow:'auto'}} >
     {props.missionList.map((value,index) => (
       <ListItem
         key={index}
         disableGutters
         secondaryAction={
-          <IconButton edge="end" aria-label="delete" onClick={()=>deleteMission(index)}>
+          <IconButton edge="false" aria-label="delete" onClick={()=>deleteMission(index)}>
               {/* <DeleteIcon color= 'rgb(255, 255, 255)' /> */}
               <DeleteIcon color= "#1976d2"/>
           </IconButton>
         }
       >
-        <ListItemAvatar>
-                    <Avatar>
-                      <FolderIcon />
-                    </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary={`${value}`} secondary={`Job Name`} 
-          secondaryTypographyProps={{color: 'rgb(102, 157, 246)'}}
+        <ListItemButton>
+        <ListItemText primary={`${value}`} 
         />
+        </ListItemButton>
       </ListItem>
     ))}
    </List>);
