@@ -11,6 +11,14 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { color } from '@mui/system';
 
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+
+import FolderIcon from '@mui/icons-material/Folder';
+import DeleteIcon from '@mui/icons-material/Delete';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Avatar from '@mui/material/Avatar';
+
 
 
 
@@ -30,10 +38,14 @@ function App() {
   function onClearClick(){
     setPastIntervals([]);
   }
+  function onMissionSelectClick(){
+    
+  }
   let [currentCount,setCurrentCount] = useState(0);
   let [intervalID,setIntervalID] = useState(0);
   // let [pastIntervals,setPastIntervals] = useState([Number]);
   let [pastIntervals,setPastIntervals] = useState([]);
+  let [availableMissions,setAvailableMissions] = useState([]);
 
   function tickTime(){
     // let newCount = currentCount+1;
@@ -51,6 +63,7 @@ function App() {
     setCurrentCount(0);
     
   }
+  
   const pastIntervalList = pastIntervals.map((pastInterval,index)=>
     <div key={index}>
     {/*pastInterval*/}{index+1}th Session {pastInterval.date.toISOString().substring(11,19)}
@@ -90,6 +103,61 @@ function App() {
    </List>);
   }
 
+  function addMission() {
+  // function addMission(missionName) {
+    // if(availableMissions.includes(missionName)===false)
+    setAvailableMissions(availableMissions=>[...availableMissions,"Mission"]);
+  }
+  function deleteMission(index) {
+    // function addMission(missionName) {
+      // if(availableMissions.includes(missionName)===false)
+      let missionCopy = [...availableMissions];
+      missionCopy.splice(index,1);
+      setAvailableMissions(missionCopy);
+    }
+
+  function AvailableMissionList(props){
+    return(<List sx={{maxHeight: 200, overflow: 'auto'}} >
+    {props.missionList.map((value,index) => (
+      <ListItem
+        key={index}
+        disableGutters
+        secondaryAction={
+          <IconButton edge="end" aria-label="delete" onClick={()=>deleteMission(index)}>
+              {/* <DeleteIcon color= 'rgb(255, 255, 255)' /> */}
+              <DeleteIcon color= "#1976d2"/>
+          </IconButton>
+        }
+      >
+        <ListItemAvatar>
+                    <Avatar>
+                      <FolderIcon />
+                    </Avatar>
+        </ListItemAvatar>
+        <ListItemText primary={`${value}`} secondary={`Job Name`} 
+          secondaryTypographyProps={{color: 'rgb(102, 157, 246)'}}
+        />
+      </ListItem>
+    ))}
+   </List>);
+
+  }
+
+  function AvailableMissionEditor(props){
+    return(
+      <div style={{width:'100%'}}>
+        <br/>
+        <AvailableMissionList missionList={availableMissions}></AvailableMissionList>
+        <br/>
+        <Stack spacing={2} direction="row">
+          <Button variant='contained' onClick={props.addMissionHandler}>Add</Button>
+          <Button variant='contained'>Remove</Button>
+        </Stack>
+      </div>
+
+    );
+  }
+
 
   return (
     <div className="App">
@@ -101,6 +169,11 @@ function App() {
         <StartToggle isCounting={isCounting} onToggle={onStartToggle}/>
 
         <button className='straightButton' onClick={onClearClick}>Clean</button>
+        <br/>
+        <button className='straightButton' onClick={onMissionSelectClick}>Select Mission</button>
+        <br/>
+        <AvailableMissionEditor addMissionHandler={addMission}/>
+
         {/*currentCount*/}
         {'\n'}
         {(pastIntervals.length>0) &&<h3>{"Total Interval:"}{getTotalInterval}</h3>}
