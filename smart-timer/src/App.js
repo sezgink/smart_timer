@@ -71,6 +71,25 @@ function App() {
   //   return {getTotalInterval};
   // }
 
+  function PastIntervalsList(props){
+
+    return(<List sx={{maxHeight: 200, overflow: 'auto'}}>
+    {props.pastIntervalsInput.map((value,index) => (
+      <ListItem
+        key={index}
+        disableGutters
+        secondaryAction={
+          <IconButton aria-label="comment">
+            {/* <CommentIcon /> */}
+          </IconButton>
+        }
+      >
+        <ListItemText primary={`${index+1}.Session ${value.date.toISOString().substring(11,19)}`} secondary={`Job Name`} secondaryTypographyProps={{color: 'rgb(102, 157, 246)'}}/>
+      </ListItem>
+    ))}
+   </List>);
+  }
+
 
   return (
     <div className="App">
@@ -86,22 +105,8 @@ function App() {
         {'\n'}
         {(pastIntervals.length>0) &&<h3>{"Total Interval:"}{getTotalInterval}</h3>}
         {/* {pastIntervalList} */}
-        <List sx={{maxHeight: 200, overflow: 'auto'}}>
-         {pastIntervals.map((value,index) => (
-           <ListItem
-             key={index}
-             disableGutters
-             secondaryAction={
-               <IconButton aria-label="comment">
-                 {/* <CommentIcon /> */}
-               </IconButton>
-             }
-           >
-             <ListItemText primary={`${index+1}.Session ${value.date.toISOString().substring(11,19)}`} secondary={`Job Name`} secondaryTypographyProps={{color: 'rgb(102, 157, 246)'}}/>
-           </ListItem>
-         ))}
-        </List>
         
+        <PastIntervalsList pastIntervalsInput={pastIntervals}/>
 
         </div>
         
