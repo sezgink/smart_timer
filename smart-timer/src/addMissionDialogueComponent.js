@@ -18,10 +18,11 @@ export default function AddMissionFormDialog(props) {
   const handleClose = () => {
     setOpen(false);
   };
-  const handleAddThenClose = () => {
+  const handleSubmit = () => {
     if(missionName==='')
         return;
     props.addMissionHandler(missionName);
+    setMissionName('');
     setOpen(false);
   };
   const handleMissionNameChange = (e) =>{
@@ -31,7 +32,15 @@ export default function AddMissionFormDialog(props) {
   return (
     <div>
       <Button variant='contained' onClick={handleClickOpen}>Add Mission</Button>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={open} 
+            onClose={handleClose} 
+            onKeyUp={(e) => {
+                const ENTER = 13;
+                console.log(e.keyCode)
+
+                if (e.keyCode === ENTER) {
+                  handleSubmit();
+                }}}>
         <DialogTitle>Add Mission</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -50,7 +59,7 @@ export default function AddMissionFormDialog(props) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleAddThenClose}>Add</Button>
+          <Button onClick={handleSubmit}>Add</Button>
         </DialogActions>
       </Dialog>
     </div>
