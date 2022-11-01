@@ -35,10 +35,7 @@ export default function AddMissionFormDialog(props) {
       <Dialog open={open} 
             onClose={handleClose} 
             onKeyUp={(e) => {
-                const ENTER = 13;
-                console.log(e.keyCode)
-
-                if (e.keyCode === ENTER) {
+                if (e.key === 'Enter') {
                   handleSubmit();
                 }}}>
         <DialogTitle>Add Mission</DialogTitle>
