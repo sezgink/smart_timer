@@ -16,7 +16,7 @@ function PastIntervalsList(props){
           </IconButton>
         }
       >
-        <ListItemText primary={`${index+1}.Session ${value.date.toISOString().substring(11,19)}`} secondary={`Job Name`} secondaryTypographyProps={{color: 'rgb(102, 157, 246)'}}/>
+        <ListItemText primary={`${index+1}.Session ${value.date.toISOString().substring(11,19)}`} secondary={value.mission} secondaryTypographyProps={{color: 'rgb(102, 157, 246)'}}/>
       </ListItem>
     ))}
    </List>);

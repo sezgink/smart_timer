@@ -64,7 +64,7 @@ function App() {
   function stopCounting(){
     clearInterval(intervalID);
     // setPastIntervals(pastIntervals=>[...pastIntervals,currentCount]);
-    setPastIntervals(pastIntervals=>[...pastIntervals,{interval: currentCount, date: new Date(currentCount*1000)}]);
+    setPastIntervals(pastIntervals=>[...pastIntervals,{interval: currentCount, date: new Date(currentCount*1000), mission: currentMission}]);
     setCurrentCount(0);
     
   }
@@ -115,6 +115,7 @@ function App() {
 
         <div>
         <TimerText isCounting={isCounting} currentCount={currentCount}/>
+        <p>{currentMission}</p>
         <br/>
         <StartToggle isCounting={isCounting} onToggle={onStartToggle}/>
 

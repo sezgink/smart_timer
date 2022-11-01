@@ -42,13 +42,10 @@ function AvailableMissionList(props){
       <div style={{width:'100%'}}>
         <br/>
         <AvailableMissionList missionList={props.missionList} deleteMissionHandler={props.deleteMissionHandler} selectMissionHandler={props.selectMissionHandler}></AvailableMissionList>
-        <br/>
+        <Button variant='contained' onClick={props.addMissionHandler}>Add Mission</Button>
         <Stack spacing={2} direction="row">
-          <Button variant='contained' onClick={props.addMissionHandler}>Add</Button>
-          <Button variant='contained'>Remove</Button>
         </Stack>
       </div>
-
     );
   }
 
