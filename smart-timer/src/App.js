@@ -61,17 +61,12 @@ function App() {
   function stopCounting(){
     clearInterval(intervalID);
     // setPastIntervals(pastIntervals=>[...pastIntervals,currentCount]);
-    setPastIntervals(pastIntervals=>[...pastIntervals,{interval: currentCount, date: new Date(currentCount*1000), mission: currentMission}]);
+    // setPastIntervals(pastIntervals=>[...pastIntervals,{interval: currentCount, date: new Date(currentCount*1000), mission: currentMission}]);
+    setPastIntervals(pastIntervals=>[...pastIntervals,{interval: currentCount, date: currentCount, mission: currentMission}]);
     setCurrentCount(0);
     
   }
   
-  const pastIntervalList = pastIntervals.map((pastInterval,index)=>
-    <div key={index}>
-    {/*pastInterval*/}{index+1}th Session {pastInterval.date.toISOString().substring(11,19)}
-    </div>
-  );
-
   const getTotalInterval = pastIntervals.reduce((accumulator,value)=>{
     return accumulator + value.interval;
   },0);
