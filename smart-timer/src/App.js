@@ -42,9 +42,6 @@ function App() {
   function onClearClick(){
     setPastIntervals([]);
   }
-  function onMissionSelectClick(){
-    
-  }
   let [currentCount,setCurrentCount] = useState(0);
   let [intervalID,setIntervalID] = useState(0);
   // let [pastIntervals,setPastIntervals] = useState([Number]);
@@ -106,7 +103,15 @@ function App() {
       let currentMissionTemp = availableMissions[index];
       console.log("Selected Mission"+index);
       setCurrentMission(currentMissionTemp);
+      closeMissionSelect();
   }  
+  const [missionSelectOpen, setMissionSelectOpen] = useState(false);
+  function onMissionSelectToggle(){
+    setMissionSelectOpen((missionSelectOpen)=>!missionSelectOpen);
+  }
+  function closeMissionSelect(){
+    setMissionSelectOpen(false);
+  }
 
   return (
     <div className="App">
@@ -115,14 +120,12 @@ function App() {
         <div>
         <TimerText isCounting={isCounting} currentCount={currentCount}/>
         <p>{currentMission}</p>
-        <br/>
         <StartToggle isCounting={isCounting} onToggle={onStartToggle}/>
 
         <button className='straightButton' onClick={onClearClick}>Clean</button>
         <br/>
-        <button className='straightButton' onClick={onMissionSelectClick}>Select Mission</button>
-        <br/>
-        <AvailableMissionEditor addMissionHandler={addMission} missionList={availableMissions} deleteMissionHandler={deleteMission} selectMissionHandler={selectMission}/>
+        <button className='straightButton' onClick={onMissionSelectToggle}>Select Mission</button>
+        {(missionSelectOpen)&&<AvailableMissionEditor addMissionHandler={addMission} missionList={availableMissions} deleteMissionHandler={deleteMission} selectMissionHandler={selectMission}/>}
 
         {/*currentCount*/}
         {'\n'}
