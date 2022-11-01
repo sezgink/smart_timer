@@ -89,10 +89,9 @@ function App() {
   //   return {getTotalInterval};
   // }
 
-  function addMission() {
-  // function addMission(missionName) {
-    // if(availableMissions.includes(missionName)===false)
-    setAvailableMissions(availableMissions=>[...availableMissions,"Nice Mission"+availableMissions.length]);
+  function addMission(missionName) {
+    if(availableMissions.includes(missionName)===false)
+    setAvailableMissions(availableMissions=>[...availableMissions,missionName]);
   }
   function deleteMission(index) {
     // function addMission(missionName) {

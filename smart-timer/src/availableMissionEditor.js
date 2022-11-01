@@ -13,6 +13,7 @@ import { ListItemButton } from '@mui/material';
 
 import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
+import AddMissionFormDialog from './addMissionDialogueComponent';
 
 function AvailableMissionList(props){
     return(<List sx={{maxHeight: 200, overflow:'auto'}} >
@@ -42,7 +43,8 @@ function AvailableMissionList(props){
       <div style={{width:'100%'}}>
         <br/>
         <AvailableMissionList missionList={props.missionList} deleteMissionHandler={props.deleteMissionHandler} selectMissionHandler={props.selectMissionHandler}></AvailableMissionList>
-        <Button variant='contained' onClick={props.addMissionHandler}>Add Mission</Button>
+        {/* <Button variant='contained' onClick={props.addMissionHandler}>Add Mission</Button> */}
+        <AddMissionFormDialog addMissionHandler={props.addMissionHandler}/>
         <Stack spacing={2} direction="row">
         </Stack>
       </div>
