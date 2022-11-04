@@ -8,14 +8,20 @@ import {useRef,useEffect} from 'react';
 function PastIntervalsList(props){
 
     const scrollRef = useRef(null);
+    const scrollDivRef = useRef(null);
 
     useEffect(() => {
-      if (scrollRef.current) {
-        scrollRef.current.scrollIntoView({ behaviour: "smooth",  block: 'nearest', inline: 'start' });
+
+
+      // if (scrollRef.current) {
+      //   scrollRef.current.scrollIntoView({ behaviour: "smooth",  block: 'nearest', inline: 'start' }); //Scroll whole window to updating list
+      // }
+      if (scrollDivRef.current) {
+        scrollDivRef.current.scrollTo({ behaviour: "smooth",  block: 'nearest', inline: 'start',top:5000 }); //Scroll list only
       }
     }, [props.pastIntervalsInput]);
 
-    return(<List sx={{maxHeight: 200, overflow: 'auto',width: '100%' }}>
+    return(<List sx={{maxHeight: 200, overflow: 'auto',width: '100%'}} ref={scrollDivRef}>
     {props.pastIntervalsInput.map((value,index) => (
       <ListItem
         key={index}

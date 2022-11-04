@@ -22,6 +22,7 @@ import { ListItemButton } from '@mui/material';
 import PastIntervalsList from './pastIntervalList';
 
 import AvailableMissionEditor from './availableMissionEditor';
+import { alignProperty } from '@mui/material/styles/cssUtils';
 
 
 
@@ -112,14 +113,19 @@ function App() {
     <div className="App">
       <header className="App-header">
 
-        <div>
+        <div style={{}} >
         <TimerText isCounting={isCounting} currentCount={currentCount}/>
         <p>{currentMission}</p>
-        <StartToggle isCounting={isCounting} onToggle={onStartToggle}/>
 
-        <button className='straightButton' onClick={onClearClick}>Clean</button>
+        <Stack direction="row" spacing={2} style={{justifyContent:'center', display:'flex'}}>
+        <StartToggle isCounting={isCounting} onToggle={onStartToggle}/>
+        <Button size="large" variant="contained" onClick={onClearClick}>Clean</Button>
+        {/* <button className='straightButton' onClick={onClearClick}>Clean</button> */}
+        </Stack>
+        
         <br/>
-        <button className='straightButton' onClick={onMissionSelectToggle}>Select Mission</button>
+        {/* <button className='straightButton' onClick={onMissionSelectToggle}>Select Mission</button> */}
+        <Button size="large" variant="contained" onClick={onMissionSelectToggle}>Select Mission</Button>
         {(missionSelectOpen)&&<AvailableMissionEditor addMissionHandler={addMission} missionList={availableMissions} deleteMissionHandler={deleteMission} selectMissionHandler={selectMission}/>}
 
         {/*currentCount*/}
