@@ -130,7 +130,7 @@ function App() {
 
         {/*currentCount*/}
         {'\n'}
-        {(pastIntervals.length>0) &&<h3>{"Total Interval:"}{getTotalInterval}</h3>}
+        {(pastIntervals.length>0) &&<h4>{"Total Interval:"}{(getTotalInterval/60).toFixed()}{" Minutes"}</h4>}
         {/* {pastIntervalList} */}
         
         <PastIntervalsList pastIntervalsInput={pastIntervals}/>
