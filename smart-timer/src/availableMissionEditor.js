@@ -24,7 +24,9 @@ function AvailableMissionList(props){
         secondaryAction={
           <IconButton edge={false} aria-label="delete" onClick={()=>props.deleteMissionHandler(index)}>
               {/* <DeleteIcon color= 'rgb(255, 255, 255)' /> */}
-              <DeleteIcon color= "#1976d2"/>
+              <DeleteIcon sx={{
+                color: "#7d7e80",":hover":{backgroundColor:"#7396c7"}
+                }} />
           </IconButton>
         }
       >
