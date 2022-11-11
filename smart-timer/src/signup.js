@@ -24,7 +24,6 @@ const SignupForm = () => (
         return errors;
       }}
       onSubmit={(values, { setSubmitting }) => {
-        console.log("Submiting");
         const fetchOptions = {
           headers: {
             // 'Accept': 'application/json',
@@ -33,7 +32,7 @@ const SignupForm = () => (
           method: "POST",
           body: JSON.stringify(values, null, 2)
         }
-        console.log(JSON.stringify(values, null, 2));
+        // console.log(JSON.stringify(values, null, 2));
         fetch(signupUrl,fetchOptions).then((res)=>{
           console.log(res);
         }).catch((err)=>{
