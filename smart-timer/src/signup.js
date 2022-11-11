@@ -34,6 +34,14 @@ const SignupForm = () => (
         }
         // console.log(JSON.stringify(values, null, 2));
         fetch(signupUrl,fetchOptions).then((res)=>{
+          console.log("Response came");
+          // console.log(res.json());
+          res.json().then((jres)=>{
+            console.log(jres);
+          }).catch((err)=>{
+            console.log(err);
+          });
+
           console.log(res);
         }).catch((err)=>{
           console.log(err);
