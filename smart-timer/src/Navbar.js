@@ -11,7 +11,7 @@ return (
 			Timer
 		</NavLink>
 		<NavLink to="/login" activeStyle>
-			Sign Up
+			Sign In
 		</NavLink>
 		</NavMenu>
 	</Nav>

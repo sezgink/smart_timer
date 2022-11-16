@@ -4,8 +4,9 @@ import Timer from './Timer';
 import Navbar from './Navbar';
 import { BrowserRouter as Router, Routes, Route}
     from 'react-router-dom';
-import './Timer.css';
-import SignupForm from './signup';
+// import SignupForm from './signup';
+import SignupFrom2 from './signup2';
+import LoginForm from './login';
 
 function App() {
   
@@ -15,7 +16,8 @@ function App() {
     <Routes>
         <Route exact path='/' element={<Timer />} />
         <Route path='/timer' element={<Timer />} />
-        <Route path='/login' element={<SignupForm />} />
+        <Route path='/login' element={<LoginForm />} />
+        <Route path='/signup' element={<SignupFrom2 />} />
         {/* <Route path='/about' element={<About/>} /> */}
     </Routes>
     </Router>

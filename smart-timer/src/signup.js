@@ -2,9 +2,14 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Grid } from '@mui/material';
 
+import './Login.css';
+import { ClassNames } from '@emotion/react';
+
 const signupUrl = "http://localhost:9443/login"
-const SignupForm = () => (
-  <div style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
+const SignupForm = () => {
+  return (
+  <div style={{display:'flex',alignItems:'center',justifyContent:'center'}} className="Login">
+    <header className='Login-header'>
     <Grid container spacing={2} style={{alignItems:'center',justifyContent:'center',direction:'column'}}>
         <Grid item xs={12}>
     <h1 style={{justifyContent:'center'}}>Sign Up</h1>
@@ -50,8 +55,8 @@ const SignupForm = () => (
     >
       {({ isSubmitting }) => (
         <Grid item xs={12}>
-        <Form style={{display:'flex',justifyContent:'center'}}>
-          <Field type="email" name="email" style={{display:'flex',justifyContent:'center'}}  />
+        <Form >
+          <Field type="email" name="email"  />
           <ErrorMessage name="email" component="div" />
           <Field type="password" name="password" />
           <ErrorMessage name="password" component="div" />
@@ -65,7 +70,8 @@ const SignupForm = () => (
     </Formik>
 
     </Grid>
-  </div>
-);
+    </header>
+  </div>);
+};
 
 export default SignupForm;
