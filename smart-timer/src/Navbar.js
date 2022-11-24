@@ -10,6 +10,9 @@ return (
 		<NavLink to="/timer" activeStyle>
 			Timer
 		</NavLink>
+		<NavLink to="/workchart" activeStyle>
+			Work Chart
+		</NavLink>
 		<NavLink to="/login" activeStyle>
 			Sign In
 		</NavLink>

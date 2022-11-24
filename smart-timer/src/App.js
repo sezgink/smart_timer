@@ -4,20 +4,31 @@ import Timer from './Timer';
 import Navbar from './Navbar';
 import { BrowserRouter as Router, Routes, Route}
     from 'react-router-dom';
+import {redirect} from 'react-router';
 // import SignupForm from './signup';
 import SignupFrom2 from './signup2';
 import LoginForm from './login';
+import WorkChart from './workChart';
 
-function App() {
-  
+
+
+function App() {  
+  let [userState,setUserState]= useState({isSigned:false,user:{ _id:"", email:""},token:""});
+
   return (
+    
     <Router>
     <Navbar />
     <Routes>
-        <Route exact path='/' element={<Timer />} />
-        <Route path='/timer' element={<Timer />} />
-        <Route path='/login' element={<LoginForm />} />
-        <Route path='/signup' element={<SignupFrom2 />} />
+        <Route exact path='/' element={<Timer userState={userState} />} />
+        <Route path='/timer' element={<Timer userState={userState} />} />
+        <Route path='/login' element={<LoginForm setUserState={setUserState} />}>
+        {/* <Route path='/login'> */}
+          {/* {userState.isSigned ? redirect('/timer'): "" } */}
+          {/* {userState.isSigned ? redirect('/timer'): <LoginForm setUserState={setUserState} /> } */}
+        </Route>
+        <Route path='/signup' element={<SignupFrom2 setUserState={setUserState} />} />
+        <Route path='/workchart' element={<WorkChart userState={userState} />} />
         {/* <Route path='/about' element={<About/>} /> */}
     </Routes>
     </Router>

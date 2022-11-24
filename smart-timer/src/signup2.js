@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -11,8 +12,9 @@ import Typography from '@mui/material/Typography';
 import { ThemeProvider } from '@emotion/react';
 import { createTheme } from '@mui/material/styles';
 import { color } from '@mui/system';
+import { CircularProgress } from '@mui/material';
 
-const signupUrl = "http://localhost:9443/signup";
+const signupUrl = "http://localhost:9443/user/signup";
 
 const loginTheme = createTheme({
     palette: {
@@ -48,14 +50,15 @@ const validationSchema = yup.object({
     .required('Password is required'),
 });
 
-const SignupForm2 = () => {
+const SignupForm2 = (props) => {
+    let [submitting,setSubmitting]=useState(false);
     const formik = useFormik({
       initialValues: {
         email: '',
         password: '',
       },
       validationSchema: validationSchema,
-      onSubmit: (values, { setSubmitting }) => {
+      onSubmit: (values) => {
         const fetchOptions = {
           headers: {
             // 'Accept': 'application/json',
@@ -64,19 +67,26 @@ const SignupForm2 = () => {
           method: "POST",
           body: JSON.stringify(values, null, 2)
         }
+        setSubmitting(true);
         // console.log(JSON.stringify(values, null, 2));
         fetch(signupUrl,fetchOptions).then((res)=>{
           console.log("Response came");
+          setSubmitting(false);
           // console.log(res.json());
           res.json().then((jres)=>{
             console.log(jres);
+            if(jres.token !== null && jres.user !== null){
+              props.setUserState({isSigned:true,token:jres.token,user:jres.user});
+            }
           }).catch((err)=>{
             console.log(err);
+            
           });
 
           console.log(res);
         }).catch((err)=>{
           console.log(err);
+          setSubmitting(false);
         });
       }},
     );
@@ -86,6 +96,7 @@ const SignupForm2 = () => {
       // <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', margin:100 ,backgroundColor:'#282c34'}}>
       <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', margin:100}}>
         <h2>Sign Up</h2>
+        {submitting?<CircularProgress />:null}
         <form onSubmit={formik.handleSubmit}>
             {/* <ThemeProvider theme={loginTheme}> */}
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -13,8 +13,11 @@ import { createTheme } from '@mui/material/styles';
 import { color } from '@mui/system';
 import { Link } from '@mui/material';
 import { NavLink } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
 
-const loginUrl = "http://localhost:9443/login";
+import { useNavigate } from 'react-router-dom';
+
+const loginUrl = "http://localhost:9443/user/login";
 
 const loginTheme = createTheme({
     palette: {
@@ -50,14 +53,19 @@ const validationSchema = yup.object({
     .required('Password is required'),
 });
 
-const LoginForm = () => {
+const LoginForm = (props) => {
+
+    let [submitting,setSubmitting]=useState(false);
+    let [errorMessage,setErrorMessage]=useState(false);
+    const navigate = useNavigate();
     const formik = useFormik({
       initialValues: {
         email: '',
         password: '',
       },
       validationSchema: validationSchema,
-      onSubmit: (values, { setSubmitting }) => {
+      // onSubmit: (values, { setSubmitting }) => {
+      onSubmit: (values) => {
         const fetchOptions = {
           headers: {
             // 'Accept': 'application/json',
@@ -66,19 +74,37 @@ const LoginForm = () => {
           method: "POST",
           body: JSON.stringify(values, null, 2)
         }
+        setSubmitting(true);
         // console.log(JSON.stringify(values, null, 2));
         fetch(loginUrl,fetchOptions).then((res)=>{
           console.log("Response came");
           // console.log(res.json());
           res.json().then((jres)=>{
             console.log(jres);
+            
+            if(res.status===400){
+              console.log("Wrong email or password");
+              setErrorMessage(true);
+              // alert("Wrong email or password!");
+            }
+
+            if(jres.token != null && jres.user != null){
+              console.log(jres.user._id);
+              props.setUserState({isSigned:true,token:jres.token,user:jres.user});
+              navigate("/");
+              // props.setUserState({isSigned:true,token:jres.token});
+            }
+            
           }).catch((err)=>{
             console.log(err);
           });
 
+          setSubmitting(false);
+
           console.log(res);
         }).catch((err)=>{
           console.log(err);
+          setSubmitting(false);
         });
       }},
     );
@@ -88,6 +114,9 @@ const LoginForm = () => {
       // <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', margin:100 ,backgroundColor:'#282c34'}}>
       <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', margin:100}}>
         <h2>Sign In</h2>
+        {submitting?<CircularProgress />:null}
+        {errorMessage?<p style={{color:"#be4d25"}}>Wrong email or password!</p> : null}
+        
         <form onSubmit={formik.handleSubmit}>
             {/* <ThemeProvider theme={loginTheme}> */}
 

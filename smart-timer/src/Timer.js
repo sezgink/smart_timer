@@ -27,7 +27,7 @@ import { alignProperty } from '@mui/material/styles/cssUtils';
 
 
 
-function Timer() {
+function Timer(props) {
   let [isCounting,setIsCounting] = useState(false);
   // let intervalID;
   function onStartToggle(){
