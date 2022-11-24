@@ -20,6 +20,10 @@
     margin-right: 2%;
     margin-left: 2%;
 }
+.workChartBox:hover {
+    background-color:rgb(27, 141, 255);
+
+}
 .workChartEmptyBox {
     /* background-color:rgb(17, 119, 221); */
     margin-right: 2%;
