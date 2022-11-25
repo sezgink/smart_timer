@@ -92,6 +92,8 @@ const LoginForm = (props) => {
               console.log(jres.user._id);
               props.setUserState({isSigned:true,token:jres.token,user:jres.user});
               navigate("/");
+              localStorage.setItem("token",jres.token);
+              localStorage.setItem("user",JSON.stringify(jres.user));
               // props.setUserState({isSigned:true,token:jres.token});
             }
             
