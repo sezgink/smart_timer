@@ -5,6 +5,8 @@
     background-color:rgb(37, 37, 37);
     justify-content: center;
     align-items:flex-end;
+
+    padding-bottom: 200px;
 }
 .workChartBottom {
     display: flex;
@@ -16,11 +18,14 @@
 }
 
 .workChartBox {
-    background-color:rgb(17, 119, 221);
+
     margin-right: 2%;
     margin-left: 2%;
 }
-.workChartBox:hover {
+.workChartColoredBox {
+    background-color:rgb(17, 119, 221);
+}
+.workChartColoredBox:hover {
     background-color:rgb(27, 141, 255);
 
 }
