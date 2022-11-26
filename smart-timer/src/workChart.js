@@ -7,7 +7,7 @@ import * as React from 'react';
 import { DateRangePicker, DateRangePickerValue } from '@mantine/dates';
 import dayjs from 'dayjs';
 
-import DynamicHistogram from './dynamicHistogram';
+import {DynamicHistogram2} from './dynamicHistogram';
 
 const url2fetch = "http://localhost:9443/intervals/getDailyWorkBetween?"
 
@@ -144,8 +144,8 @@ const WorkChart = (props)=>{
 
     return (<div>
         <BasicDatePicker onIntervalsCome={onIntervalsCome}/>
-        {/* <DynamicHistogram datas={[1,0.3,0.5,0.7]}/> */}
-        <DynamicHistogram datas={histogramValues}/>
+        <DynamicHistogram2 datas={[{value : 1, label: "Mon"},{value : 0.5, label: "Tue"},{value : 0.2, label: "Wed"},{value : 0.6, label: "Thu"},{value : 0.5, label: "Fri"}]}/>
+        {/* <DynamicHistogram datas={histogramValues}/> */}
         </div>
     );
     

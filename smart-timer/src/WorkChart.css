@@ -5,6 +5,7 @@
     background-color:rgb(37, 37, 37);
     justify-content: center;
     align-items:flex-end;
+    flex-wrap: wrap;
 
     padding-bottom: 200px;
 }
@@ -27,6 +28,10 @@
 }
 .workChartColoredBox:hover {
     background-color:rgb(27, 141, 255);
+
+}
+.workChartColoredSideBox {
+    background-color:rgb(194, 194, 194);
 
 }
 .workChartEmptyBox {
