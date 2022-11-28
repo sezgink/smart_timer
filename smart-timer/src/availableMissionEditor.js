@@ -15,8 +15,18 @@ import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddMissionFormDialog from './addMissionDialogueComponent';
 
+import {useEffect,useRef} from 'react';
+
 function AvailableMissionList(props){
-    return(<List sx={{maxHeight: 200, overflow:'auto'}} >
+    const scrollDivRef = useRef(null);
+
+    useEffect(() => {
+      if (scrollDivRef.current) {
+        scrollDivRef.current.scrollTo({ behaviour: "smooth",  block: 'nearest', inline: 'start',top:5000 }); //Scroll list only
+      }
+    }, [props.missionList]);
+
+    return(<List sx={{maxHeight: 200, overflow:'auto'}}  ref={scrollDivRef}>
     {props.missionList.map((value,index) => (
       <ListItem
         key={index}
