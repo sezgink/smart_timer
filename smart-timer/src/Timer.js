@@ -46,13 +46,13 @@ function Timer(props) {
     clearInterval(intervalID);
     // setPastIntervals(pastIntervals=>[...pastIntervals,currentCount]);
     // setPastIntervals(pastIntervals=>[...pastIntervals,{interval: currentCount, date: new Date(currentCount*1000), mission: currentMission}]);
-    setPastIntervals(pastIntervals=>[...pastIntervals,{interval: currentCount, date: currentCount, mission: currentMission}]);
+    setPastIntervals(pastIntervals=>[...pastIntervals,{intervalLength: currentCount, date: currentCount, mission: currentMission}]);
     setCurrentCount(0);
     
   }
   
   const getTotalInterval = pastIntervals.reduce((accumulator,value)=>{
-    return accumulator + value.interval;
+    return accumulator + value.intervalLength;
   },0);
   
   // function TotalIntervalText(props){

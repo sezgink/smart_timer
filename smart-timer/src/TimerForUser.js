@@ -10,7 +10,12 @@ import PastIntervalsList from './pastIntervalList';
 
 import AvailableMissionEditor from './availableMissionEditor';
 
-const tasksEndPoint = "http://localhost:9443/tasks/"
+import dayjs from 'dayjs';
+
+const tasksEndPoint = "http://localhost:9443/tasks/";
+const intervalsEndPoint = "http://localhost:9443/intervals/";
+
+
 
 function TimerForUser(props) {
   let [isCounting,setIsCounting] = useState(false);
@@ -60,10 +65,33 @@ function TimerForUser(props) {
         console.log("err"+e);
     });
   }
+  const fetchPastIntervals = async ()=>{
+    try{
+        const fetchOptions = {
+            headers: {
+              // 'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'Authorization': localStorage.getItem('token') 
+            },
+            method: "GET",
+        }
+        const now = dayjs();
+        const todayLimit = now.subtract(12,'hour');
+        const nextLimit = now.add(54,'hour');
+        const fetchResult = await fetch(intervalsEndPoint+"getBetween?"+new URLSearchParams({beginDate: todayLimit ,endDate: nextLimit}),fetchOptions);
+        const intervalsJSON = await fetchResult.json();
+        console.log(intervalsJSON);
+        setPastIntervals(intervalsJSON.intervalsBetween);  
+    } catch(e){
+        console.log(e);
+    }
+    
+  }
   //On component mount
   useEffect(()=>{
     fetchMissions();
-
+    fetchPastIntervals();
+    console.log("On Mount");
   },[]);
 
   function tickTime(){
@@ -75,28 +103,38 @@ function TimerForUser(props) {
     let newIntervalID = setInterval(tickTime, 1000);
     setIntervalID(newIntervalID);
   }
-  function stopCounting(){
-    clearInterval(intervalID);
-    // setPastIntervals(pastIntervals=>[...pastIntervals,currentCount]);
-    // setPastIntervals(pastIntervals=>[...pastIntervals,{interval: currentCount, date: new Date(currentCount*1000), mission: currentMission}]);
-    setPastIntervals(pastIntervals=>[...pastIntervals,{interval: currentCount, date: currentCount, mission: currentMission}]);
+  async function stopCounting(){
+    clearInterval(intervalID);    
+    try {
+        const fetchOptions = {
+            headers: {
+              // 'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'Authorization': localStorage.getItem('token') 
+            },
+            method: "POST",
+            body: JSON.stringify({intervalLength:currentCount, task:currentMission,}, null, 2)
+          }
+
+          const postResult = await fetch(intervalsEndPoint+"add",fetchOptions);
+
+          if(postResult.status!==201){
+            throw new Error("Couldn't add interval");
+          }
+
+          const createdInterval = await postResult.json();
+          console.log(createdInterval);
+          setPastIntervals(pastIntervals=>[...pastIntervals,{intervalLength: currentCount, mission: currentMission}]);
+
+    } catch(e){
+        console.log("Interval Adding error"+e);
+    }
     setCurrentCount(0);
-    
   }
   
   const getTotalInterval = pastIntervals.reduce((accumulator,value)=>{
-    return accumulator + value.interval;
+    return accumulator + value.intervalLength;
   },0);
-  
-  // function TotalIntervalText(props){
-  //   const getTotalInterval=()=>{
-  //     let total = 0;
-  //     props.pastIntervals.forEach(element => {
-  //       total += element.interval;
-  //     });
-  //   }
-  //   return {getTotalInterval};
-  // }
 
   async function addMission(missionName) {
     if(MissionsToNameArray(availableMissions).includes(missionName)===false){

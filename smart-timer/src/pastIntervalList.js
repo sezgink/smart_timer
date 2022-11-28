@@ -33,7 +33,7 @@ function PastIntervalsList(props){
         }
       >
         {/* <ListItemText primary={`${index+1}.Session ${value.date.toISOString().substring(11,16)}`} secondary={value.mission} secondaryTypographyProps={{color: 'rgb(102, 157, 246)'}}/> */}
-        <ListItemText primary={`${index+1}.Session ${converSecondsToHourMinutesSecondsString(value.date)}`} secondary={value.mission} secondaryTypographyProps={{color: 'rgb(102, 157, 246)'}}/>
+        <ListItemText primary={`${index+1}.Session ${converSecondsToHourMinutesSecondsString(value.intervalLength)}`} secondary={value.mission} secondaryTypographyProps={{color: 'rgb(102, 157, 246)'}}/>
       </ListItem>
     ))}
     <li ref={scrollRef} />
