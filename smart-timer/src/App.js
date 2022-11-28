@@ -9,8 +9,7 @@ import {redirect} from 'react-router';
 import SignupFrom2 from './signup2';
 import LoginForm from './login';
 import WorkChart from './workChart';
-
-
+import TimerForUser from './TimerForUser';
 
 function App() {  
   let [userState,setUserState]= useState({isSigned:false,user:{ _id:"", email:""},token:""});
@@ -20,8 +19,8 @@ function App() {
     <Router>
     <Navbar />
     <Routes>
-        <Route exact path='/' element={<Timer userState={userState} />} />
-        <Route path='/timer' element={<Timer userState={userState} />} />
+        <Route exact path='/' element={userState.isSigned? <TimerForUser userState={userState}/>   :<Timer userState={userState} />} />
+        <Route path='/timer' element={userState.isSigned? <TimerForUser userState={userState}/>   :<Timer userState={userState} />} />
         <Route path='/login' element={<LoginForm setUserState={setUserState} />}>
         {/* <Route path='/login'> */}
           {/* {userState.isSigned ? redirect('/timer'): "" } */}
