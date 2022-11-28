@@ -124,7 +124,7 @@ function TimerForUser(props) {
 
           const createdInterval = await postResult.json();
           console.log(createdInterval);
-          setPastIntervals(pastIntervals=>[...pastIntervals,{intervalLength: currentCount, mission: currentMission}]);
+          setPastIntervals(pastIntervals=>[...pastIntervals,{intervalLength: currentCount, task: currentMission}]);
 
     } catch(e){
         console.log("Interval Adding error"+e);

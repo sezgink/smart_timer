@@ -46,7 +46,7 @@ function Timer(props) {
     clearInterval(intervalID);
     // setPastIntervals(pastIntervals=>[...pastIntervals,currentCount]);
     // setPastIntervals(pastIntervals=>[...pastIntervals,{interval: currentCount, date: new Date(currentCount*1000), mission: currentMission}]);
-    setPastIntervals(pastIntervals=>[...pastIntervals,{intervalLength: currentCount, date: currentCount, mission: currentMission}]);
+    setPastIntervals(pastIntervals=>[...pastIntervals,{intervalLength: currentCount, date: currentCount, task: currentMission}]);
     setCurrentCount(0);
     
   }
