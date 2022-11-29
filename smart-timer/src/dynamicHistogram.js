@@ -1,4 +1,5 @@
 import { useEffect,useState } from "react";
+import './dynamicHistogram.css';
 
 const DynamicHistogram = (props)=>{
     const [histogramMult,setHistogramMult] = useState(0);
@@ -56,7 +57,7 @@ const DynamicHistogram2 = (props)=>{
     return(
         <div>
             <div className='workChartDiv'>
-                <div className='workChartColoredSideBox' style={{width:10,height:250,marginBottom:15}}/>
+                {/* <div className='workChartColoredSideBox' style={{width:10,height:250,marginBottom:15}}/> */}
                 {props.datas.map((item,index)=>{
                     return(
                     <div className='workChartBox' key={index} style={{width:30}}>
@@ -66,8 +67,8 @@ const DynamicHistogram2 = (props)=>{
                     </div>
                     )
                 })}
-                <div style={{height:0,flexBasis:"100%"}}/>
-                <div className='workChartColoredSideBox' style={{width:500,height:10,marginTop:-50}}/>
+                {/* <div style={{height:0,flexBasis:"100%"}}/>
+                <div className='workChartColoredSideBox' style={{width:500,height:10,marginTop:-50}}/> */}
                 
             </div>
             
