@@ -73,8 +73,12 @@ function BasicDatePicker(props) {
           }
           // setSubmitting(true);
           
-          // console.log(JSON.stringify(values, null, 2));
-          fetch(url2fetch+new URLSearchParams({beginDate: value[0] ,endDate: value[1]}),fetchOptions).then((res)=>{
+          const beginDate = value[0];
+          // const endDate = value[1].setHours(23,59,59);
+          const endDate = dayjs(value[1]).endOf('day').toDate();
+          console.log({beginDate,endDate});
+          
+          fetch(url2fetch+new URLSearchParams({beginDate ,endDate}),fetchOptions).then((res)=>{
             console.log("Response came");
             // console.log(res.json());
             res.json().then((jres)=>{
