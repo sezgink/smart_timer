@@ -83,14 +83,14 @@ export default function WorkDataTable(props) {
         <TableBody>
           {(cumulativeData.tasks) ? cumulativeData.tasks.map((row) => (
             <TableRow
-              key={row.name}
+              key={row.taskName}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.taskName}
+                {(row.taskName)?row.taskName:"Undefined"}
               </TableCell>
-              <TableCell align="right">{row.spentTime}</TableCell>
-              <TableCell align="right">{row.spentPercent}%</TableCell>
+              <TableCell align="right">{(Math.round(row.spentTime/36))/100} hours</TableCell>
+              <TableCell align="right">{Math.round(row.spentPercent * 10000) / 100}%</TableCell>
 
             </TableRow>
           )) : null}
