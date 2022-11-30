@@ -10,6 +10,8 @@ import Paper from '@mui/material/Paper';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 
+import {converSecondsToHourAndMinutesString2} from './timeFunctions'
+
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
@@ -72,7 +74,7 @@ export default function WorkDataTable(props) {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
     <TableContainer component={Paper} sx={{maxWidth:800, display:'flex',justifyContent:'center', alignItems:'center'}}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+      <Table sx={{ minWidth: 300 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
             <TableCell>Task Name</TableCell>
@@ -89,7 +91,8 @@ export default function WorkDataTable(props) {
               <TableCell component="th" scope="row">
                 {(row.taskName)?row.taskName:"Undefined"}
               </TableCell>
-              <TableCell align="right">{(Math.round(row.spentTime/36))/100} hours</TableCell>
+              {/* <TableCell align="right">{(Math.round(row.spentTime/36))/100} hours</TableCell> */}
+              <TableCell align="right">{converSecondsToHourAndMinutesString2(row.spentTime)}</TableCell>
               <TableCell align="right">{Math.round(row.spentPercent * 10000) / 100}%</TableCell>
 
             </TableRow>
