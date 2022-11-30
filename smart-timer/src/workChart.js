@@ -6,7 +6,7 @@ import * as React from 'react';
 import { DateRangePicker, DateRangePickerValue } from '@mantine/dates';
 import dayjs from 'dayjs';
 
-import {DynamicHistogram2} from './dynamicHistogram';
+import {DynamicHistogram} from './dynamicHistogram';
 
 import { MantineProvider } from '@mantine/core';
 import WorkDataTable from './workDataTable';
@@ -160,8 +160,8 @@ const WorkChart = (props)=>{
       </div>
         
         {/* <DynamicHistogram2 datas={[{value : 1, label: "Mon"},{value : 0.5, label: "Tue"},{value : 0.2, label: "Wed"},{value : 0.6, label: "Thu"},{value : 0.5, label: "Fri"}]}/> */}
-        <DynamicHistogram2 datas={histogramValues}/>
-          <div style={{display:'flex', justifyContent:'center',alignItems:'center'}}>
+        <DynamicHistogram datas={histogramValues}/>
+          <div style={{display:'flex', justifyContent:'center',alignItems:'center',flexDirection:"column"}}>
           <WorkDataTable datas={intervalsData}/>
           </div>
         </div>

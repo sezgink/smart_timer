@@ -58,6 +58,8 @@ export default function WorkDataTable(props) {
             cumulativeObj.tasks[key].spentPercent = cumulativeObj.tasks[key].spentTime/totalTime;
         }
         cumulativeObj.tasks = Object.values(cumulativeObj.tasks);
+        cumulativeObj.totalTime = totalTime;
+        cumulativeObj.dailyAverage = totalTime/props.datas.length;
 
         console.log("cumulativeObj");
         console.log(cumulativeObj);
@@ -79,7 +81,7 @@ export default function WorkDataTable(props) {
           <TableRow>
             <TableCell>Task Name</TableCell>
             <TableCell align="right">Spent Time</TableCell>
-            <TableCell align="right">Spend %&nbsp;</TableCell>
+            <TableCell align="right">Spent %&nbsp;</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -97,6 +99,41 @@ export default function WorkDataTable(props) {
 
             </TableRow>
           )) : null}
+        </TableBody>
+      </Table>
+    </TableContainer>
+    <TableContainer component={Paper} sx={{maxWidth:800, display:'flex',justifyContent:'center', alignItems:'center', marginTop:"20px"}}>
+      <Table sx={{ minWidth: 300 }} size="small" aria-label="a dense table">
+        <TableHead>
+          <TableRow>
+            <TableCell>General Info</TableCell>
+            <TableCell align="right">Spent Time</TableCell>
+            {/* <TableCell align="right">Spend %&nbsp;</TableCell> */}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+        <TableRow
+              key="average"
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                Total Work in the Interval
+              </TableCell>
+              {/* <TableCell align="right">{(Math.round(row.spentTime/36))/100} hours</TableCell> */}
+              <TableCell align="right">{converSecondsToHourAndMinutesString2(cumulativeData.totalTime)}</TableCell>
+        </TableRow>
+        <TableRow
+              key="average"
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                Average Daily Work in the Interval
+              </TableCell>
+              {/* <TableCell align="right">{(Math.round(row.spentTime/36))/100} hours</TableCell> */}
+              <TableCell align="right">{converSecondsToHourAndMinutesString2(cumulativeData.dailyAverage)}</TableCell>
+        </TableRow>
+        
+
         </TableBody>
       </Table>
     </TableContainer>
