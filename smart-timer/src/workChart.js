@@ -9,6 +9,7 @@ import dayjs from 'dayjs';
 import {DynamicHistogram2} from './dynamicHistogram';
 
 import { MantineProvider } from '@mantine/core';
+import WorkDataTable from './workDataTable';
 
 const url2fetch = "http://localhost:9443/intervals/getDailyWorkBetween?"
 
@@ -80,10 +81,10 @@ function BasicDatePicker(props) {
           console.log({beginDate,endDate});
           
           fetch(url2fetch+new URLSearchParams({beginDate ,endDate}),fetchOptions).then((res)=>{
-            console.log("Response came");
+            // console.log("Response came");
             // console.log(res.json());
             res.json().then((jres)=>{
-              console.log(jres);
+              // console.log(jres);
               
               if(res.status===400){
                 console.log("Wrong email or password");
@@ -136,9 +137,10 @@ function BasicDatePicker(props) {
   
 
 const WorkChart = (props)=>{
-  const [histogramValues,setHistogramValues] = useState([0]);
+  let [histogramValues,setHistogramValues] = useState([0]);
+  let [intervalsData,setIntervalsData] = useState([]);
     function onIntervalsCome(data){
-      console.log("data"+ data.toString());
+      // console.log("data"+ data.toString());
       const intervalsBetween = data.intervalsBetween;
       const timesPerDay = intervalsBetween.map((dailyData)=>{
         const dailySum = Object.values(dailyData).reduce((rv,x)=>{
@@ -147,8 +149,9 @@ const WorkChart = (props)=>{
         return dailySum;
       });
       
-      console.log(timesPerDay);
+      // console.log(timesPerDay);
       setHistogramValues(timesPerDay);
+      setIntervalsData(intervalsBetween);
     }
 
     return (<div style={{display:'flex',flexDirection:'column'}}>
@@ -156,8 +159,11 @@ const WorkChart = (props)=>{
         <BasicDatePicker onIntervalsCome={onIntervalsCome}/>
       </div>
         
-        <DynamicHistogram2 datas={[{value : 1, label: "Mon"},{value : 0.5, label: "Tue"},{value : 0.2, label: "Wed"},{value : 0.6, label: "Thu"},{value : 0.5, label: "Fri"}]}/>
-        {/* <DynamicHistogram datas={histogramValues}/> */}
+        {/* <DynamicHistogram2 datas={[{value : 1, label: "Mon"},{value : 0.5, label: "Tue"},{value : 0.2, label: "Wed"},{value : 0.6, label: "Thu"},{value : 0.5, label: "Fri"}]}/> */}
+        <DynamicHistogram2 datas={histogramValues}/>
+          <div style={{display:'flex', justifyContent:'center',alignItems:'center'}}>
+          <WorkDataTable datas={intervalsData}/>
+          </div>
         </div>
     );
     
