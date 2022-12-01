@@ -113,7 +113,7 @@ export default function WorkDataTable(props) {
         </TableHead>
         <TableBody>
         <TableRow
-              key="average"
+              key="total"
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">

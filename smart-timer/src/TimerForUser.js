@@ -77,6 +77,7 @@ function TimerForUser(props) {
         }
         const now = dayjs();
         const todayLimit = now.subtract(12,'hour').toDate();; //Get date for intervals within last 12 hours
+        console.log(todayLimit);
         const nextLimit = now.add(54,'hour').toDate();
         const fetchResult = await fetch(intervalsEndPoint+"getBetween?"+new URLSearchParams({beginDate: todayLimit ,endDate: nextLimit}),fetchOptions);
         if(fetchResult.status!==200){

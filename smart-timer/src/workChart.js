@@ -149,7 +149,7 @@ const WorkChart = (props)=>{
         return dailySum;
       });
       
-      // console.log(timesPerDay);
+      console.log(timesPerDay);
       setHistogramValues(timesPerDay);
       setIntervalsData(intervalsBetween);
     }
