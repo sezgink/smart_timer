@@ -1,6 +1,8 @@
 import { useEffect,useState } from "react";
 import './dynamicHistogram.css';
 
+const round2digits = (value)=>Math.round(value*100)/100;
+
 const DynamicHistogram = (props)=>{
     const [histogramMult,setHistogramMult] = useState(0);
     const [normalizationCo,setNormalizationCo] = useState(1);
@@ -61,7 +63,7 @@ const DynamicHistogram2 = (props)=>{
                 {props.datas.map((item,index)=>{
                     return(
                     <div className='workChartBox' key={index} style={{width:30}}>
-                        <div className='workChartEmptyBox' style={{width:30,height:50,marginBottom:-15,textAlign:"center"}}><h3>{item.value}</h3></div>
+                        <div className='workChartEmptyBox' style={{width:30,height:50,marginBottom:-15,textAlign:"center"}}><h3>{round2digits(item.value)}</h3></div>
                         <div className="workChartColoredBox" style={{width:"100%",height:200*item.value*histogramMult*normalizationCo,transition: 'height 0.7s ease-out'}}/>
                         <div className='workChartEmptyBox'  style={{width:30,height:0,textAlign:"center"}}><h3>{item.label}</h3></div>
                     </div>

@@ -34,17 +34,13 @@ export default function WorkDataTable(props) {
         let cumulativeObj = new Object({tasks:{}});
         let totalTime = 0;
 
-        console.log(cumulativeObj);
-        console.log(props.datas);
+
         for (let index = 0; index < props.datas.length; index++) {
             const dailyData = props.datas[index];
-            console.log(dailyData);
             for (const [key, val] of Object.entries(dailyData)) {
                 if(cumulativeObj.tasks[key]){
                     cumulativeObj.tasks[key].spentTime += val;
-                    console.log(1);
                 } else {
-                    console.log(2);
                     cumulativeObj.tasks[key]= {};
                     cumulativeObj.tasks[key].spentTime = val;
                     cumulativeObj.tasks[key].taskName = key;
@@ -61,8 +57,8 @@ export default function WorkDataTable(props) {
         cumulativeObj.totalTime = totalTime;
         cumulativeObj.dailyAverage = totalTime/props.datas.length;
 
-        console.log("cumulativeObj");
-        console.log(cumulativeObj);
+        // console.log("cumulativeObj");
+        // console.log(cumulativeObj);
         return cumulativeObj;
       }
 

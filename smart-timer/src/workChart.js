@@ -6,7 +6,7 @@ import * as React from 'react';
 import { DateRangePicker, DateRangePickerValue } from '@mantine/dates';
 import dayjs from 'dayjs';
 
-import {DynamicHistogram} from './dynamicHistogram';
+import {DynamicHistogram, DynamicHistogram2} from './dynamicHistogram';
 
 import { MantineProvider } from '@mantine/core';
 import WorkDataTable from './workDataTable';
@@ -16,6 +16,7 @@ const url2fetch = "http://localhost:9443/intervals/getDailyWorkBetween?"
 function addDays(date, days) {
   var result = new Date(date);
   result.setDate(result.getDate() + days);
+  // console.log(result);
   return result;
 }
 function getMinDate(datesArr){
@@ -44,13 +45,13 @@ function BasicDatePicker(props) {
         dayjs(new Date()).toDate(),
     ]);
 
-    const [choosing,setChooising]= useState(false);
+    const [choosing,setChoosing]= useState(false);
 
     useEffect(()=>{
-      if(!value[1]){
-        setChooising(true);
+      if(!value[1]&&value[0]){
+        setChoosing(true);
       } else {
-        setChooising(false);
+        setChoosing(false);
       }
     },value);
 
@@ -115,21 +116,19 @@ function BasicDatePicker(props) {
         // <div style={{minWidth:200, width:"25%"}}>
         <div style={{minWidth:200,maxWidth:"100%",alignItems:'center',textAlign:'center',display:'flex',justifyContent:'center'}}>
            <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS>
-      <DateRangePicker
-        label="Choose Day Interval"
-        placeholder="Pick dates range"
-        value={value}
-        onChange={setValue}
-        // maxDate={dayjs(new Date()).toDate()}
-        maxDate={(choosing)? getMinDate([addDays(value[0],6),dayjs(new Date()).toDate()]) :dayjs(new Date()).toDate()}
-        minDate={(choosing)? addDays(value[0],-6) : null}
-        maxLength={1000}
-        style={{width:320}}
+            <DateRangePicker
+              label="Choose Day Interval"
+              placeholder="Pick dates range"
+              value={value}
+              onChange={setValue}
+              // maxDate={dayjs(new Date()).toDate()}
+              maxDate={(choosing)? getMinDate([addDays(value[0],6),dayjs(new Date()).toDate()]) :dayjs(new Date()).toDate()}
+              minDate={(choosing)? addDays(value[0],-6) : null}
+              maxLength={1000}
+              style={{width:320}}
         
         
-        // onChange={setValue}
-        
-      />
+            />
       </MantineProvider>
       </div>
     );
@@ -154,13 +153,18 @@ const WorkChart = (props)=>{
       setIntervalsData(intervalsBetween);
     }
 
+    const valuesToValueAndLabels = (valuesArray)=>valuesArray.map((value,index)=>{
+      return {value, label:index}
+    });
+
     return (<div style={{display:'flex',flexDirection:'column'}}>
       <div style={{alignItems:'center',width:"100%",justifyContent:"center",marginBottom:20,marginTop:10}}>
         <BasicDatePicker onIntervalsCome={onIntervalsCome}/>
       </div>
         
         {/* <DynamicHistogram2 datas={[{value : 1, label: "Mon"},{value : 0.5, label: "Tue"},{value : 0.2, label: "Wed"},{value : 0.6, label: "Thu"},{value : 0.5, label: "Fri"}]}/> */}
-        <DynamicHistogram datas={histogramValues}/>
+        {/* <DynamicHistogram datas={histogramValues}/> */}
+        <DynamicHistogram2 datas={valuesToValueAndLabels(histogramValues)}/>
           <div style={{display:'flex', justifyContent:'center',alignItems:'center',flexDirection:"column"}}>
           <WorkDataTable datas={intervalsData}/>
           </div>
