@@ -16,7 +16,7 @@ function App() {
   let [userState,setUserState]= useState({isSigned:false,user:{ _id:"", email:""},token:""});
 
   useEffect(()=>{
-    checkSignIn();
+    checkSignIn(setUserState);
   },[]);
 
   return (
