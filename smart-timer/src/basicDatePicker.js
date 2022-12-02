@@ -109,7 +109,7 @@ function BasicDatePicker(props) {
         // <div style={{minWidth:200, width:"25%"}}>
         <div style={{minWidth:200,maxWidth:"100%",alignItems:'center',textAlign:'center',display:'flex',justifyContent:'center'}}>
            {/* <MantineProvider theme={{ colorScheme: 'dark' }} withGlobalStyles withNormalizeCSS> */}
-           <MantineProvider theme={{ colorScheme: 'dark' }}  withGlobalStyles withNormalizeCSS >
+           <MantineProvider theme={{ colorScheme: 'dark' }}>
             <DateRangePicker
               label="Choose Day Interval"
               placeholder="Pick dates range"

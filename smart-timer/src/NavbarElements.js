@@ -9,7 +9,7 @@ display: flex;
 justify-content: space-between;
 padding: 0.2rem calc((100vw - 1000px) / 2);
 z-index: 12;
-font-family:Georgia, 'Times New Roman', Times, serif;
+font-weight: bold;
 position: fixed;
 top: 0;
 width:100%;

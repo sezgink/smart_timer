@@ -62,7 +62,7 @@ const WorkChart = (props)=>{
     }
 
     return (<div className='Timer' style={{display:'flex',flexDirection:'column'}}>
-      <div style={{alignItems:'center',width:"100%",justifyContent:"center",marginBottom:20,marginTop:10}}>
+      <div style={{alignItems:'center',width:"100%",justifyContent:"center",marginBottom:20,marginTop:50,height:"50px"}}>
         <BasicDatePicker onIntervalsCome={onIntervalsCome}/>
       </div>
         
