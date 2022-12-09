@@ -28,6 +28,9 @@ export async function onSignout(setUserState,navigateHome){
 
 export const checkSignIn = (setUserState)=>{
   const localUser = localStorage.getItem("user");
+  if(localUser===null||localUser==null||localUser===undefined){
+    return null;
+  }
   if(localUser!==""){
       const userData = JSON.parse(localUser);
       setUserState({isSigned:true,user:{ _id:localUser._id, email:localUser.email},token:localStorage.getItem("token")});
