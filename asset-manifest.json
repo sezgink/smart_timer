@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/smart_timer/static/css/main.44887331.css",
-    "main.js": "/smart_timer/static/js/main.365bd08b.js",
+    "main.js": "/smart_timer/static/js/main.1bc6df66.js",
     "static/js/787.a1307cde.chunk.js": "/smart_timer/static/js/787.a1307cde.chunk.js",
     "index.html": "/smart_timer/index.html",
     "main.44887331.css.map": "/smart_timer/static/css/main.44887331.css.map",
-    "main.365bd08b.js.map": "/smart_timer/static/js/main.365bd08b.js.map",
+    "main.1bc6df66.js.map": "/smart_timer/static/js/main.1bc6df66.js.map",
     "787.a1307cde.chunk.js.map": "/smart_timer/static/js/787.a1307cde.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.44887331.css",
-    "static/js/main.365bd08b.js"
+    "static/js/main.1bc6df66.js"
   ]
 }
