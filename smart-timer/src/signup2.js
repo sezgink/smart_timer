@@ -13,6 +13,7 @@ import { ThemeProvider } from '@emotion/react';
 import { createTheme } from '@mui/material/styles';
 import { color } from '@mui/system';
 import { CircularProgress } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const signupUrl = "http://localhost:9443/user/signup";
 
@@ -52,6 +53,8 @@ const validationSchema = yup.object({
 
 const SignupForm2 = (props) => {
     let [submitting,setSubmitting]=useState(false);
+    let [errorMessage,setErrorMessage]=useState(false);
+    const navigate = useNavigate();
     const formik = useFormik({
       initialValues: {
         email: '',
@@ -73,10 +76,19 @@ const SignupForm2 = (props) => {
           console.log("Response came");
           setSubmitting(false);
           // console.log(res.json());
+          if(res.status===400){
+            console.log("Email already exists");
+            setErrorMessage(true);
+            // alert("Wrong email or password!");
+          }
+
           res.json().then((jres)=>{
             console.log(jres);
-            if(jres.token !== null && jres.user !== null){
+            if(jres.token != null && jres.user != null){
               props.setUserState({isSigned:true,token:jres.token,user:jres.user});
+              navigate("/");
+              localStorage.setItem("token",jres.token);
+              localStorage.setItem("user",JSON.stringify(jres.user));
             }
           }).catch((err)=>{
             console.log(err);
@@ -97,6 +109,7 @@ const SignupForm2 = (props) => {
       <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center', margin:100}}>
         <h2>Sign Up</h2>
         {submitting?<CircularProgress />:null}
+        {errorMessage?<p style={{color:"#be4d25"}}>E-mail exists!</p> : null}
         <form onSubmit={formik.handleSubmit}>
             {/* <ThemeProvider theme={loginTheme}> */}
 
