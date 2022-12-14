@@ -12,8 +12,8 @@ import AvailableMissionEditor from './availableMissionEditor';
 
 import dayjs from 'dayjs';
 
-const tasksEndPoint = "http://localhost:9443/tasks/";
-const intervalsEndPoint = "http://localhost:9443/intervals/";
+const tasksEndPoint = "https://smart-timer-api.onrender.com/tasks/";
+const intervalsEndPoint = "https://smart-timer-api.onrender.com/intervals/";
 
 
 

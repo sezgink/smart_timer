@@ -1,6 +1,6 @@
 export async function onSignout(setUserState,navigateHome){
 
-    const logoutEndpoint = "http://localhost:9443/user/logout/"
+    const logoutEndpoint = "https://smart-timer-api.onrender.com/user/logout/"
     
     const fetchOptions = {
       

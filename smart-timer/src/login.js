@@ -17,7 +17,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 import { useNavigate } from 'react-router-dom';
 
-const loginUrl = "http://localhost:9443/user/login";
+const loginUrl = "https://smart-timer-api.onrender.com/user/login";
 
 const loginTheme = createTheme({
     palette: {

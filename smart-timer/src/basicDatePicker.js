@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import { MantineProvider } from '@mantine/core';
 import { useEffect, useState } from 'react';
 
-const url2fetch = "http://localhost:9443/intervals/getDailyWorkBetween?"
+const url2fetch = "https://smart-timer-api.onrender.com/intervals/getDailyWorkBetween?"
 
 function addDays(date, days) {
   var result = new Date(date);

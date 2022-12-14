@@ -15,7 +15,7 @@ import { color } from '@mui/system';
 import { CircularProgress } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
-const signupUrl = "http://localhost:9443/user/signup";
+const signupUrl = "https://smart-timer-api.onrender.com/user/signup";
 
 const loginTheme = createTheme({
     palette: {
