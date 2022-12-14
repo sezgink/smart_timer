@@ -11,7 +11,8 @@ import Typography from '@mui/material/Typography';
 import { ThemeProvider } from '@emotion/react';
 import { createTheme } from '@mui/material/styles';
 import { color } from '@mui/system';
-import { Link } from '@mui/material';
+// import { Link } from '@mui/material';
+import { Link } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -158,7 +159,7 @@ const LoginForm = (props) => {
           {/* </ThemeProvider> */}
         </form>
 
-        <h3>Don't you have an account? <Link href="/signup">Register here</Link></h3>
+        <h3>Don't you have an account? <Link to="/signup">Register here</Link></h3>
       </div>
     );
   };
