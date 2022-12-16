@@ -7,13 +7,18 @@ For working example https://sezgink.github.io/smart_timer
 
 For selecting current mission, by clicking "Select Mission Button" open missions list, click the one you want to make active mission, click garbage icon near list item to delete mission from list, click add mission to open add mission panel.
 If user signed in, react app get and edit missions list by using backend application, if not signed in hold them in react state.
+
 ![Alt text](/md/TimerSelectMission.png?raw=true "Title")
+
 
 Use start toggle to start timer, and use stop button to stop timer and add recent interval to the intervals list with the current mission.
 If user signed in, app gets todays intervals from backend and add new intervals to the data on the backend.
+
 ![Alt text](/md/TimerGeneral2.png?raw=true "Title")
 
+
 If user signed in, Work Chart navigation being visible, and user can select day intervals up to length of 7 days to see their daily work amount on charts,histogram and tasks they worked on.
+
 ![Alt text](/md/TimerWorkChart.png?raw=true "Title")
 
 ## Project Details
