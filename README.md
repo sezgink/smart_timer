@@ -1,5 +1,13 @@
 # smart_timer
-Timer app for tracking work periods, with aim of observe most effective time cycles and protect mental wellbeing while working.  
+Timer app for tracking work periods, with aim of observe most effective time cycles and protect mental wellbeing while working.
+
+## Timer Details
+
+![Alt text](/md/TimerGeneral2.png?raw=true "Title")
+![Alt text](/md/TimerSelectMission.png?raw=true "Title")
+![Alt text](/md/TimerWorkChart.png?raw=true "Title")
+
+## Project Details
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
