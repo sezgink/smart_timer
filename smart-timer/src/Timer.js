@@ -9,6 +9,8 @@ import Stack from '@mui/material/Stack';
 import PastIntervalsList from './pastIntervalList';
 
 import AvailableMissionEditor from './availableMissionEditor';
+import { date } from 'yup';
+import dayjs from 'dayjs';
 
 function Timer(props) {
   let [isCounting,setIsCounting] = useState(false);
@@ -32,13 +34,22 @@ function Timer(props) {
   let [pastIntervals,setPastIntervals] = useState([]);
   let [availableMissions,setAvailableMissions] = useState([]);
   let [currentMission,setCurrentMission] = useState(String);
+  // let [startTime,setStartTime] = useState(new Date());
+  let startTime = new Date()
 
   function tickTime(){
     // let newCount = currentCount+1;
-     setCurrentCount(currentCount=>currentCount+1);
+    // const calculatedCount = (new Date()).getTime()-startTime.getTime();
+
+    const currentTime = new Date()
+
+    const calculatedCount = (currentTime.getTime()-startTime.getTime())/1000;
+    setCurrentCount(calculatedCount);
+    // setCurrentCount(currentCount=>currentCount+1);
      
   }
   function startCounting() {
+    startTime = new Date()
     let newIntervalID = setInterval(tickTime, 1000);
     setIntervalID(newIntervalID);
   }

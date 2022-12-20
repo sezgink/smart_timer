@@ -39,6 +39,7 @@ function TimerForUser(props) {
   let [pastIntervals,setPastIntervals] = useState([]);
   let [availableMissions,setAvailableMissions] = useState([]);
   let [currentMission,setCurrentMission] = useState(String);
+  let startTime = new Date()
 
   const MissionsToNameArray = (missions)=>{
     return Array.from(missions, x=>x.name);
@@ -100,11 +101,13 @@ function TimerForUser(props) {
   },[]);
 
   function tickTime(){
-    // let newCount = currentCount+1;
-     setCurrentCount(currentCount=>currentCount+1);
-     
+    const currentTime = new Date()
+    const calculatedCount = (currentTime.getTime()-startTime.getTime())/1000;
+    setCurrentCount(calculatedCount);
+    //setCurrentCount(currentCount=>currentCount+1);  
   }
   function startCounting() {
+    startTime = new Date()
     let newIntervalID = setInterval(tickTime, 1000);
     setIntervalID(newIntervalID);
   }
